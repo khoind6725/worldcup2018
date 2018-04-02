@@ -1,0 +1,4 @@
+export const FILTER_GROUP = 'FILTER_GROUP';
+export const FILTER_TEAM1 = 'FILTER_TEAM1';
+export const FILTER_TEAM2 = 'FILTER_TEAM2';
+export const FILTER_STADIUM = 'FILTER_STADIUM';
