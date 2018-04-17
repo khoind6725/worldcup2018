@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { stadiums } from './../datas/stadiums';
 import { nations } from './../datas/nations';
 import ld from 'lodash';
+import LabelItem from './LabelItem';
 
 class ListMatch extends Component {
 
@@ -41,10 +42,19 @@ class ListMatch extends Component {
             })
 
             result = matchList.map((match, index) => {
-                return <MatchItem
-                    key={index}
-                    match={match}
-                />;
+                if (match.label) {
+                    return <LabelItem
+                        key={index}
+                        label={match.label}
+                        color={match.backgroundColor}
+                    />;
+                }
+                else {
+                    return <MatchItem
+                        key={index}
+                        match={match}
+                    />;
+                }
             })
         }
         return result;
@@ -53,9 +63,14 @@ class ListMatch extends Component {
     getNameStadium = (id) => {
         return ld.filter(stadiums, { id })[0].name;
     }
-    
+
     getNameTeam = (id) => {
-        return ld.filter(nations, { id })[0].name;
+        if (Number.isInteger(id)) {
+            return ld.filter(nations, { id })[0].name;
+        }
+        else {
+            return id;
+        }
     }
 }
 

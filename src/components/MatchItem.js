@@ -32,7 +32,7 @@ class MatchItem extends Component {
                                 width: '50px',
                                 height: '30px'
                             }}
-                            alt={this.showNameNation(team1)}
+                            // alt={this.showNameNation(team1)}
                         />
                     </div>
                 </td>
@@ -46,9 +46,9 @@ class MatchItem extends Component {
                                 width: '50px',
                                 height: '30px'
                             }}
-                            alt={this.showNameNation(team2)}
+                            // alt={this.showNameNation(team2)}
                         />
-                    </div>     
+                    </div>
                     <p
                         style={{
                             float: 'right',
@@ -59,22 +59,37 @@ class MatchItem extends Component {
                         }}
                     >
                         {this.showNameNation(team2)}
-                    </p>  
+                    </p>
                 </td>
             </tr>
         );
     }
 
     showNameNation = (id) => {
-        return ld.filter(nations, { id })[0].name;
+        if (Number.isInteger(id)) {
+            return ld.filter(nations, { id })[0].name;
+        }
+        else {
+            return id;
+        }
     }
 
     showNameStadium = (id) => {
-        return ld.filter(stadiums, { id })[0].name;
+        if (Number.isInteger(id)) {
+            return ld.filter(stadiums, { id })[0].name;
+        }
+        else {
+            return id;
+        }
     }
 
     showFlagOfTeam = (id) => {
-        return ld.filter(nations, { id })[0].flag_url;
+        if (Number.isInteger(id)) {
+            return ld.filter(nations, { id })[0].flag_url;
+        }
+        else {
+            return '';
+        }
     }
 
     formatDateTime = (datetime = '00000000') => {
